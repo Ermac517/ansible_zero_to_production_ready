@@ -25,6 +25,12 @@ RUN pip3 install --break-system-packages "ansible[azure]"; \
     pip3 install --break-system-packages "ansible[azure.azcollection]"; \
     pip3 install --break-system-packages -r "$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"] + "/ansible_collections/azure/azcollection/requirements.txt")')"
 
+# Azure credentials are injected at runtime via --env-file.
+ENV AZURE_SUBSCRIPTION_ID=""
+ENV AZURE_CLIENT_ID=""
+ENV AZURE_SECRET=""
+ENV AZURE_TENANT=""
+
 # Set the working directory
 WORKDIR /ansible
 
