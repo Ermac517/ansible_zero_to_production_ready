@@ -42,6 +42,20 @@ The repository includes an `inventory` file for local container testing.
 ansible-playbook ping.yml -i inventory
 ```
 
+## Run the Windows WinRM sample
+
+The `win_ping.yaml` playbook requires the WinRM Python client in the container image. Rebuild the image after pulling changes:
+
+```bash
+docker build -t ansible:latest .
+```
+
+When targeting a single host directly, pass the public IP as a host list with a trailing comma so Ansible does not treat it as an inventory file path:
+
+```bash
+ansible-playbook win_ping.yaml -i '40.87.108.94,'
+```
+
 ## Run the Azure playbooks
 
 Run the playbooks in the following order from inside the container:

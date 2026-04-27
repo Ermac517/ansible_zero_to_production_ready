@@ -4,11 +4,13 @@ FROM ubuntu:latest
 RUN apt-get update; \
     apt install -y openssh-client; \
     apt-get install -y wget curl apt-transport-https; \
+    apt install -y sshpass; \
     apt install -y python3-pip
 
 # Install Ansible and AWS SDKs
 RUN pip3 install --upgrade pip --break-system-packages; \
     pip3 install --break-system-packages "ansible"; \
+    pip3 install --break-system-packages "pywinrm"; \
     pip3 install --break-system-packages boto; \
     pip3 install --break-system-packages boto3
 
